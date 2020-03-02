@@ -3,6 +3,7 @@
 init:
 LDA #$00
 STA !freeram
+RTL
 main:
 LDA !freeram
 BEQ .checkbuttons	;if freeram is zero, check buttons
@@ -10,7 +11,7 @@ LDA #$FF 			;if freeram is not zero, give mario star power then check buttons
 STA !star_power
 .checkbuttons
 LDA $18
-AND #$00110000 ;axlr---- if nothing is being pressed, return
+AND #%00110000 ;axlr---- if nothing is being pressed, return
 BEQ .return
 LDA !freeram	;if freeram is not zero and buttons are being pressed, set it to 0
 BNE .zero
@@ -20,5 +21,6 @@ BRA .return
 .zero
 LDA #$00
 STA !freeram
+STA !star_power
 .return
 RTL
