@@ -2,11 +2,21 @@
 
 !value = $35 ;this is the upper bound of the random value, set it higher than 35 at your own risk
 !table_reset = 1 ;set this to 0 if we want to maximize fun (and possible crashes)
-!frames = $20 ;how many frames should we randomize this
+!freeram = $7FB500	;can be changed if needed
+if !sa1 == 1
+	!freeram = $40B500
+endif
+!frames = $40	;not in decimal, how many frames
+
+init: 
+	LDA #!frames
+	STA !freeram
+RTL
 main:
-LDA $14
-AND #!frames
-BEQ .return
+LDA !freeram
+BNE .return
+LDA #!frames
+STA !freeram
 LDX #!sprite_slots-1
 .loop
 LDA !14C8,X
@@ -22,6 +32,9 @@ endif
 DEX
 BPL .loop
 .return
+LDA !freeram
+DEC A
+STA !freeram
 RTL
 
 
