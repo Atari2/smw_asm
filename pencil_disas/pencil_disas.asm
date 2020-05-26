@@ -136,7 +136,7 @@ CODE_039475:					;| Retracting/extending the sprite: set Y speed.
 	INC A						;||  If the spike is sprite AD in an odd X position, invert the given Y speed.
 CODE_03947D:					;||
 	STA !AA,X					;|/ 
-	JSL $01801A					;| Update Y position.
+	JSL $01801A|!BankB			;| Update Y position.
 	RTS							;|
 
 
@@ -156,7 +156,7 @@ CODE_039488:					;| Routine for processing interaction between the wooden spike 
 	ADC.b #$04					;||
 	CMP.b #$08					;||
 	BCS CODE_03949F				;|/
-	JSL $00F5B7					;| Hurt Mario.
+	JSL $00F5B7|!BankB			;| Hurt Mario.
 	RTS							;|
 
 CODE_03949F:					;| Not within 4 pixels of the sprite; touching the sides.
@@ -220,7 +220,7 @@ WoodSpikeGfxLoopSt:				;| Tile loop.
 	PLX							;|
 	LDY.b #$02					;|\ 
 	LDA.b #$04					;|| Upload 5 16x16 tiles.
-	JSL $01B7B3					;|/
+	JSL $01B7B3|!BankB			;|/
 	RTS							;|
 
 SubHorzPosBnk3:					;-----------| Subroutine to check horizontal proximity of Mario to a sprite.
