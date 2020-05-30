@@ -1,3 +1,5 @@
+!customredkoopanumber = $00 
+
 print "MAIN", pc
 PHB : PHK 
 PLB
@@ -16,7 +18,7 @@ GenSuperKoopa:					;-----------| Super Koopa generator MAIN
 	LDA $14						;$02B1BC	|\ 
 	AND.b #$3F					;$02B1BE	|| Return if not time to spawn a Koopa.
 	BNE Return02B206			;$02B1C0	|/
-	LDA #$00
+	LDA #!customredkoopanumber
 	SEC
 	%SpawnSprite()
 	BCS Return02B206
