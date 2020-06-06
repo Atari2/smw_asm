@@ -98,8 +98,14 @@ CODE_01AF07:					;			|
 	BEQ Return01AF23			;$01AF0D	|/
 	JSR SetSomeYSpeed			;$01AF0F	| Set ground Y speed.
 	LDA.b #$18					;$01AF12	|| Time to shake the screen.
-	JSR SpawnShockwave
 	STA.w $1887|!addr			;$01AF14	|
+	%BEC(NoStun)				; Only stun the player if on ground and extra bit set
+	LDA $13EF|!addr
+	BEQ NoStun
+	LDA #$10
+	STA $18BD|!addr
+	NoStun:
+	JSR SpawnShockwave
 	LDA.b #$09					;$01AF17	|\ SFX for the Thwomp hitting the ground.
 	STA.w $1DFC|!addr			;$01AF19	|/
 	LDA.b #$40					;$01AF1C	|| How long to wait on the ground.

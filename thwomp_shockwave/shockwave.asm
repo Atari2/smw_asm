@@ -32,8 +32,6 @@ LDA #$00
 JSL $01A7DC	
 BCC NoTouchy
 JSL $00F5B7			;hurt mario and stun
-LDA #$10
-STA $18BD|!addr
 NoTouchy:
 JSL $019138			;process block interaction
 LDA.w !1588,X		;if blocked by the sides, kill it
