@@ -1,4 +1,5 @@
-!SpriteNum = $01 ; this needs to be the sprite number in list.txt of shockwave.asm
+!SpriteNum = $01 ; this needs to be the sprite number in list.txt of shockwave.cfg
+; Extra bit set -> Stuns the player when the thwomp lands
 print "INIT", pc
 InitThwomp:						;-----------| Thwomp INIT
 	LDA !D8,X					;$01AE96	|\ Preserve spawn Y position.
