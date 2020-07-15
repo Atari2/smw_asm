@@ -27,6 +27,7 @@ RTL
 
 main:
        LDA $9D
+       ORA $13D4|!addr
        BNE Return
        LDA !RisingOrSinking
        AND #$01

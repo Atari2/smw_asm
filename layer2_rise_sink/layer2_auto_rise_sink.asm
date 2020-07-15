@@ -24,6 +24,8 @@ STA !RisingOrSinking
 RTL
 
 main:
+       LDA $13D4|!addr
+       BNE Return
        LDA $14
        AND #!Speed
        ORA $9D
