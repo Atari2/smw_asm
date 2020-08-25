@@ -3,6 +3,7 @@
 incsrc "bubble_dis_tables.asm" ;;get 'em tables
 print "INIT", pc
 InitBubbleSpr:					;-----------| Bubble INIT
+	PHB : PHK : PLB
 	%BES(.set_custom)			;;if the extra bit is set, use extra_byte_1
 	JSR InitExplodingBlk        ;;if the extra bit isn't set, just use vanilla setting (aka X pos)
 	BRA .continue
@@ -18,7 +19,8 @@ InitBubbleSpr:					;-----------| Bubble INIT
 	STY !C2,X					;$018567	|/
 	DEC.w !1534,X				;$018569	|
 	JSR FaceMario				;$01856C	|
-
+	PLB
+	RTL
 print "MAIN ", pc
 
 BubbleSpriteMain:				;-----------| Bubble MAIN

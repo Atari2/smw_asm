@@ -11,13 +11,13 @@ incsrc "bubble_dis_custom_tables.asm" ;;get 'em tables
 assert !README != 0, "You haven't read the README, have you? Aborting insertion..."
 print "INIT", pc
 InitBubbleSpr:					;-----------| Bubble INIT
-	%BEC(+) ;;if the extra bit is clear, use the extra byte 1 to set the sprite inside the bubble from the vanilla 4
-	LDA !special,X ;;load the fourth ext. byte
+	%BEC(+) 		;;if the extra bit is clear, use the extra byte 1 to set the sprite inside the bubble from the vanilla 4
+	LDA !special,X 	;;load the fourth ext. byte
 	AND #$02
 	LSR 
-	ORA !1686,X ;set the inedible flag if bit 2 of !special is set
+	ORA !1686,X 	;set the inedible flag if bit 2 of !special is set
 	STA !1686,X
-	LDA !sprite,X ;if yes, load extra byte 1 to C2 without modifying it 
+	LDA !sprite,X 	;if yes, load extra byte 1 to C2 without modifying it 
 	TAY
 	BRA .continue
 	+
@@ -32,6 +32,7 @@ InitBubbleSpr:					;-----------| Bubble INIT
 	STY !C2,X					;$018567	|/
 	DEC.w !1534,X				;$018569	|
 	JSR FaceMario				;$01856C	|
+	RTL
 
 print "MAIN ", pc
 
@@ -168,11 +169,11 @@ Return02D977:					;			|
 
 
 CODE_02D978:	;```````````| Erasing the bubble and replacing it with the sprite inside.					
-	%BEC(+++) ;;if the extra bit is clear, don't check if it's special and just load c2 in Y
+	%BEC(+++) ;;if the extra bit is clear, don't check if it's special and just load c1 in Y
 	PHY 
 	JSR isSpecial  ;checking if it's a special sprite or not
 	PLY
-	LDA !sprite,X  ;if not, use C2,X for the sprite number to spawn
+	LDA !sprite,X  ;if not, use extra_byte_1,X for the sprite number to spawn
 	BRA .no2
 	+++
 	LDY !C2,X

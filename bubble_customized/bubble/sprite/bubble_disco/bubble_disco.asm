@@ -1,5 +1,5 @@
 ;;disassembled by Atari2.0, all code taken from smw-irq, made by p4plus2 along with the contribution of thomas (kaizoman) so big thanks to them.
-;;bubble that spawns a disco shell (requires a custom sprite https://www.smwcentral.net/?p=section&a=details&id=3442 
+;;bubble that spawns a disco shell (requires a custom sprite https://www.smwcentral.net/?p=section&a=details&id=3442)
 ;;this sprite works differently depending if you set the extra bit.
 ;;if extra bit clear (02) it will interact as soon as it spawns, if set (03) it will wait 20 frames
 ;;REQUIRES extra byte 1 to be set to the number that the flashing shell has in your list.txt
