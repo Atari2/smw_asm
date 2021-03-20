@@ -1,4 +1,4 @@
 # smw_asm
 Various asm tidbits
 Some asm projects and stuff I've been working on, various degrees of attention to detail and success.
-DM me on Discord if you find anything not working, warning, not everything works on sa-1.
+Don't contact me about any of these ASM's not working or not suiting your needs. I won't help you get them working as these are completely personal asm thingies which are not for general usage.
