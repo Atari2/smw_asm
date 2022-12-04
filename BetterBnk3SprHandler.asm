@@ -7,7 +7,7 @@ endif
 
 ; Sprites handled by Bnk3CallSprMain
 org $03A263
-    RTS : NOP       ; nuke the PLB : RTL that bowser has.
+    RTS : NOP       
 org $03A118
 Bnk3CallSprMain:
 	PHB							
@@ -23,10 +23,10 @@ Bnk3CallSprMain:
     BNE +
     JMP CallSprite
     +
-    DEY #2          ; yes the reason I'm doubling Y is so that I don't have to do TYA : ASL : TAY, since the cycle count is the same
+    DEY #2         
     BPL .findlowindexloop
     .skipSearch
-    SBC #$A0        ; carry is already set
+    SBC #$A0        
     ASL 
     TAY 
     LDA Bnk3Sprites+1,y
@@ -49,13 +49,13 @@ Bnk3Sprites:
 dw $A259	;$A0 -> BowserFight                  
 dw $B163	;$A1 -> BowserBowlingBall            
 dw $B2A9	;$A2 -> MechaKoopa
-CallSprite: ;$A3-$A7   -> CallSprite subroutine
+CallSprite: ;$A3-$A7  
     LDA LowIdTable+1,y
     PHA
     LDA LowIdTable,y
     PHA
-    RTS     ; using RTS instead of JMP ($0000) because I don't have enough bytes, it's only 1 cycle difference anyway
-    NOP     ; ugh alignment
+    RTS     
+    NOP     
 dw $9F38	;$A8 -> Blargg                       
 dw $9890	;$A9 -> Reznor                       
 dw $96F6	;$AA -> Fishbone                     
@@ -64,7 +64,7 @@ dw $9423	;$AC -> WoodenSpike
 dw $9423	;$AD -> WoodenSpike                  
 dw $9065	;$AE -> FishinBoo
 .return   	; yes I'm really doing this
-dw $6BAB  	;$AF -> Translates to PLB : RTL            
+dw $6BAB  	;$AF          
 dw $8F7A	;$B0 -> BooStream                    
 dw $9284	;$B1 -> CreateEatBlock               
 dw $9214	;$B2 -> FallingSpike                 
